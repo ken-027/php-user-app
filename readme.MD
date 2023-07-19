@@ -10,5 +10,9 @@ Instructions
 ```
 3. Run the application
 ```batch
-  php -S localhost:8000
+  cd public && php -S localhost:8000
+```
+4. Go to 
+```url
+  http://localhost:8000/users
 ```
