@@ -1,0 +1,34 @@
+<?php
+include_once __DIR__ . '/app/lib/connection.php';
+include_once __DIR__ . '/app/config/const.php';
+
+use Lib\Connection;
+
+class User
+{
+    public static function migrate(): void
+    {
+        $connection = new Connection();
+        $conn = $connection->get();
+
+        $query = <<<Query
+          CREATE TABLE IF NOT EXISTS `users`(
+            id INT NOT NULL AUTO_INCREMENT,
+            firstName VARCHAR(100) NULL,
+            middleName VARCHAR(100) NULL,
+            lastName VARCHAR(100) NULL,
+            birthDate DATE,
+            image VARCHAR (100),
+            PRIMARY KEY ( id )
+          );
+        Query;
+
+        $conn->query('DROP TABLE `users`');
+        $conn->query($query);
+
+        echo "Migrate successfully :)\n";
+        exit;
+    }
+}
+
+User::migrate();
